@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "init server using expressjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imen-lakrib/new-project.git"
+  },
+  "keywords": [
+    "server"
+  ],
+  "author": "imen lakrib",
+  "license": "ISC",
+  "engines": {
+    "node": "v16.19.0"
+  },
+  "bugs": {
+    "url": "https://github.com/imen-lakrib/new-project/issues"
+  },
+  "homepage": "https://github.com/imen-lakrib/new-project#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
