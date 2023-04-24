@@ -38,11 +38,11 @@ const Login = (req, res) => {
         if (!usersArr) {
             return res.status(400).json({ data: "empty database" })
         }
-        if (usersArr.find(user => (user.email === email) && user.password === password)) {
+        if (usersArr.find(user => (user.email === email || user.username=== username) && user.password === password )) {
             return (
                 req.session.userId = email,
-                req.session.userName = username,
-                res.status(200).json({ data: `welcome ${email}` })
+                req.session.userName = email,
+                res.status(200).json({ data: `welcome ${req.session.userName}` })
             )
         }
         return res.status(400).json({ data: "invalid credentials" })
