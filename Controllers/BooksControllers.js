@@ -1,9 +1,15 @@
 import fs from 'fs'
+import ejs from 'ejs'
+
+
+const test = {
+    html: '<h1>Hello World</h1>'
+  };
 
 const AllBooks = (req, res) => {
     fs.readFile('book.json', (err, books) => {
         if (err) {
-            return console.log(err)
+            return res.status(500).json({message: err})
         }
         if (!req.session.userId) {
             return res.status(403).json({ message: "you can't access to books list before logged in" })
@@ -11,13 +17,13 @@ const AllBooks = (req, res) => {
         let booksArr = JSON.parse(books)
         return res.status(200).json({ booksArr })
 
-
     })
 }
 
 const EditBook = (req, res) => {
-    const { body } = req
-    const { isbn, country, imageLink, language, link, pages, title } = body
+    const { body, params } = req
+    const {isbn}= params
+    const {  country, imageLink, language, link, pages, title } = body
     if (!req.session.userId && !req.session.userName) {
         return res.status(403).json({ message: "you can't access to edit books before logged in" })
     }
@@ -36,7 +42,6 @@ const EditBook = (req, res) => {
             currentBook.link = link
             currentBook.pages = pages
             currentBook.title = title
-
         }
         fs.writeFile("book.json", JSON.stringify(booksArr), (err) => {
             if (err) console.log(err);
@@ -81,8 +86,8 @@ const AddBook = (req, res) => {
 }
 
 const RemoveBook = (req, res) => {
-    const { body } = req
-    const { isbn } = body
+    const {  params } = req
+    const { isbn } = params
     fs.readFile('book.json', (err, books) => {
         // verify the !session => 403: please login
 
@@ -107,4 +112,45 @@ const RemoveBook = (req, res) => {
 
 }
 
-export { AllBooks, AddBook, RemoveBook, EditBook }
+const GetOneBook= (req,res)=>{
+    const {  params } = req
+    const { isbn } = params
+
+
+    fs.readFile('book.json', (err, books) => {
+
+        if (!req.session.userId) {
+            return res.status(403).json({ message: "you can't access to books list before logged in" })
+        }
+        let booksArr = JSON.parse(books)
+        const myBook = booksArr.filter((book)=> book.isbn === isbn)
+        if(myBook.length == 0){
+            return res.status(404).json({message: "book not found"})
+            
+        }
+        console.log(myBook)
+
+         // Render EJS template with myBook data
+         const template = `
+         <html>
+         <h1><%= myBook[0].title %></h1>
+         <p>Author: <%= myBook[0].author %></p>
+         <p>ISBN: <%= myBook[0].isbn %></p>
+         <p>Country: <%= myBook[0].country %></p>
+         <p>Language: <%= myBook[0].language %></p>
+         <p>Pages: <%= myBook[0].pages %></p>
+         <p>Year: <%= myBook[0].year %></p>
+         <img src="<%= myBook[0].imageLink %>" alt="Book cover">
+         </html>
+     `;
+     const html = ejs.render(template, { myBook });
+
+        return res.status(200).send( html)
+
+
+    })
+
+
+}
+
+export { AllBooks, AddBook, RemoveBook, EditBook, GetOneBook }
