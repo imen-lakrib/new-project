@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Book Info</title>
+  </head>
+  <body>
+    <h1>Book Information</h1>
+    <div>
+      <% for (let i = 0; i < booksArr.length; i++) { %>
+        <h2><%= booksArr[i].title %></h2>
+        <p>Author: <%= booksArr[i].author %></p>
+        <p>ISBN: <%= booksArr[i].isbn %></p>
+        <p>Country: <%= booksArr[i].country %></p>
+        <img src="<%= booksArr[i].imageLink %>" alt="<%= booksArr[i].title %>">
+      <% } %>
+    </div>
+    
+  </body>
+</html>

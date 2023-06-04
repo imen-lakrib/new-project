@@ -1,1 +1,37 @@
-[{},{"email":"sihem@gmail.com","password":"0000","username":"sihem youness"},{"email":"test@gmail.com","password":"0000","username":"test test"},{"email":"karima@gmail.com","password":"0000","username":"karima"},{"email":"bilal@gmail.com","password":"0000","username":"bilal yahia"},{"email":"wafia@gmail.com","password":"0000","username":"wafia yahia"},{"email":"jasmine@gmail.com","password":"0000","username":"wafia yahia"},{"email":"testttt@gmail.com","password":"0000","username":"wafia yahia"}]
+[
+    {
+        "email": "sihem@gmail.com",
+        "password": "0000",
+        "username": "sihem youness"
+    },
+    {
+        "email": "test@gmail.com",
+        "password": "0000",
+        "username": "test test"
+    },
+    {
+        "email": "karima@gmail.com",
+        "password": "0000",
+        "username": "karima"
+    },
+    {
+        "email": "bilal@gmail.com",
+        "password": "0000",
+        "username": "bilal yahia"
+    },
+    {
+        "email": "wafia@gmail.com",
+        "password": "0000",
+        "username": "wafia yahia"
+    },
+    {
+        "email": "jasmine@gmail.com",
+        "password": "0000",
+        "username": "wafia yahia"
+    },
+    {
+        "email": "testttt@gmail.com",
+        "password": "0000",
+        "username": "wafia yahia"
+    }
+]
